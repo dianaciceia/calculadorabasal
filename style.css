@@ -19,7 +19,7 @@ body{
 }
 
 #calculadora{
-    background: white;
+    background: rgb(246, 240, 247);
     width: 50%;
     height: 100%;
     float: left;
@@ -30,7 +30,12 @@ body{
     width: 50%;
     height: 100%;
     float: left;
-    color: #f6f5f7;
+    color: white;
+
+}
+
+#ComoCalcular{
+    text-align: left;
 }
 
 .contenido{
@@ -41,11 +46,12 @@ body{
     padding: 40px;
 }
 
+
 input {
 	width: 70%;
     padding: 12px 15px;
     border: none;
-    background-color: #eee;
+    background-color: #eeccf3;
 }
 
 button {
@@ -63,4 +69,18 @@ button {
 
 button:active {
 	transform: scale(0.95);
+}
+
+#error{
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+.resultado{
+    color: #8797ee;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 5px;
+    display: none;
 }

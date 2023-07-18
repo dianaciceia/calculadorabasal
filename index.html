@@ -6,7 +6,7 @@
     <title>Calculadora</title>
     <link rel="stylesheet" href="./style.css"/> 
     <script src="./script.js" defer></script>
-    <meta name="viewport" content="width=divice-widht, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0"></meta>
+  
 </head>
 <body>
     <div id="contenedor">
@@ -25,12 +25,23 @@
             </div>
         </div>
         <div id="detalle">
-            <div class="contenido">
+            <div class="comosecalcula">
                 <h1>¿Cómo se calcula?</h1>
+            </div>
+            <div id= "contenido1" class="oculto">
+                <h3>Método Holliday-Segar</h3>
                 <ul id= "ComoCalcular">
-                    <li>De 0kg a 10kg, se calcula 100cc por cada kilo.</li>
+                    <li>De 0kg a 10kg, 100cc por cada kilo.</li>
                     <li>Se suman 50cc por cada kilo de peso por arriba de 10kg, hasta 20kg.</li>
                     <li>De 20kg para arriba, se suman 20cc por cada kilo adicional.</li>
+                </ul>
+            </div>
+            <div id= "contenido2" class="oculto">
+                <h3>Método de Superficie Corporal</h3>
+                <ul id="ComoCalcular">
+                    <li>Más de 30 kg, se utiliza esta fórmula: Superficie corporal = ((peso * 4) + 7) / (peso + 90)</li>
+                    <li>EL resultado se multiplica por 1500 y por 2000</li>
+                    <li>El médico decide cual de los dos resultados utilizará</li>
                 </ul>
             </div>
         </div>

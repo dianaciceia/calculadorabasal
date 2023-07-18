@@ -6,6 +6,8 @@ const TITULOHS = document.getElementById("titulohs");
 const BUTON = document.getElementById("calcular");
 const INPUT = document.getElementById("peso");
 const ERROR = document.getElementById("error");
+const CONTENIDO1 = document.getElementById("contenido1")
+const CONTENIDO2 = document.getElementById("contenido2")
 
 BUTON.addEventListener("click",()=>{
     let peso = INPUT.value;
@@ -26,8 +28,13 @@ BUTON.addEventListener("click",()=>{
 
             RESULTADO3.style.display= "none";
             ERROR.style.display= "none";
+
+            CONTENIDO2.classList.remove("oculto")
+            CONTENIDO1.classList.add("oculto")
+
         } else { 
             let hc = HollidaySegar(peso);
+
             TITULOHS.innerHTML= "Método Holliday-Segar, los resultados son:";
             TITULOHS.style.display= "block"; 
 
@@ -40,6 +47,9 @@ BUTON.addEventListener("click",()=>{
             RESULTADO3.innerHTML= " Mantenimiento + M/2:    " + hc[2] + " cc/h"
             RESULTADO3.style.display= "block";
             ERROR.style.display= "none";
+
+            CONTENIDO1.classList.remove("oculto")
+            CONTENIDO2.classList.add("oculto")
         }
 });
 

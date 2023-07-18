@@ -1,5 +1,8 @@
 const RESULTADO1 = document.getElementById("resultado1");
 const RESULTADO2 = document.getElementById("resultado2");
+const RESULTADO3 = document.getElementById("resultado3");
+const TITULOSC = document.getElementById("titulosc");
+const TITULOHS = document.getElementById("titulohs");
 const BUTON = document.getElementById("calcular");
 const INPUT = document.getElementById("peso");
 const ERROR = document.getElementById("error");
@@ -11,15 +14,31 @@ BUTON.addEventListener("click",()=>{
            ERROR.style.display = "block";
         } else if (peso > 30){
             let sc = SuperficieCorporal(peso);
-            RESULTADO1.innerHTML= sc[0] + " cc/h";
+            TITULOSC.innerHTML= "Su volumen diario es:";
+            TITULOHS.style.display= "none";
+            TITULOSC.style.display= "block";
+
+            RESULTADO1.innerHTML= "1 -  " + sc[0] + " cc";
             RESULTADO1.style.display= "block";
 
-            RESULTADO2.innerHTML= sc[1] + " cc/h";
+            RESULTADO2.innerHTML= "2 -  " + sc[1] + " cc";
             RESULTADO2.style.display= "block";
+
+            RESULTADO3.style.display= "none";
             ERROR.style.display= "none";
-        } else {
-            RESULTADO1.innerHTML= HollidaySegar(peso) + " cc/h";
+        } else { 
+            let hc = HollidaySegar(peso);
+            TITULOHS.innerHTML= "Los resultados son:";
+            TITULOHS.style.display= "block"; 
+
+            RESULTADO1.innerHTML= " Volumen diario:    " + hc[0] + " cc";
             RESULTADO1.style.display= "block";
+
+            RESULTADO2.innerHTML= " Mantenimiento:    " + hc[1] + " cc/h";
+            RESULTADO2.style.display= "block";
+
+            RESULTADO3.innerHTML= " Mantenimiento + M/2:    " + hc[2] + " cc/h"
+            RESULTADO3.style.display= "block";
             ERROR.style.display= "none";
         }
 });
@@ -33,11 +52,11 @@ function SuperficieCorporal(peso){
 function HollidaySegar(peso){
     let resultado = 0;
     if(peso <= 10){
-        resultado = (peso * 100) 
+        resultado = (peso * 100)
     } else if(peso >10 && peso <= 20) {
         resultado = (((peso - 10)*50) + 1000 )
     } else {
         resultado = (((peso - 20)*20) + 1500)
     } 
-        return resultado
+    return [resultado.toFixed(0), (resultado / 24).toFixed(0), ((resultado / 24) *1.5).toFixed(0)]
 }

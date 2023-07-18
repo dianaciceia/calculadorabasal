@@ -14,7 +14,7 @@ BUTON.addEventListener("click",()=>{
            ERROR.style.display = "block";
         } else if (peso > 30){
             let sc = SuperficieCorporal(peso);
-            TITULOSC.innerHTML= "Su volumen diario es:";
+            TITULOSC.innerHTML= "Método de Superficie Corporal, su volumen diario es:";
             TITULOHS.style.display= "none";
             TITULOSC.style.display= "block";
 
@@ -28,7 +28,7 @@ BUTON.addEventListener("click",()=>{
             ERROR.style.display= "none";
         } else { 
             let hc = HollidaySegar(peso);
-            TITULOHS.innerHTML= "Los resultados son:";
+            TITULOHS.innerHTML= "Método Holliday-Segar, los resultados son:";
             TITULOHS.style.display= "block"; 
 
             RESULTADO1.innerHTML= " Volumen diario:    " + hc[0] + " cc";

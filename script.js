@@ -37,6 +37,7 @@ BUTON.addEventListener("click",()=>{
 
             TITULOHS.innerHTML= "Método Holliday-Segar, los resultados son:";
             TITULOHS.style.display= "block"; 
+            TITULOSC.style.display= "none";
 
             RESULTADO1.innerHTML= " Volumen diario:    " + hc[0] + " cc";
             RESULTADO1.style.display= "block";

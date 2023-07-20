@@ -1,76 +1,72 @@
-let lista = ["MARIA,ARBOL"];
-let palabra = lista[Math.floor(Math.random()*lista.length)];
-let intentos = 6; 
+const RESULTADO1 = document.getElementById("resultado1");
+const RESULTADO2 = document.getElementById("resultado2");
+const RESULTADO3 = document.getElementById("resultado3");
+const TITULOSC = document.getElementById("titulosc");
+const TITULOHS = document.getElementById("titulohs");
+const BUTON = document.getElementById("calcular");
+const INPUT = document.getElementById("peso");
+const ERROR = document.getElementById("error");
+const CONTENIDO1 = document.getElementById("contenido1")
+const CONTENIDO2 = document.getElementById("contenido2")
 
-const API = "https://random-word-api.herokuapp.com/word?length=5&lang=es"
-fetch(API)
-    .then(responde => responde.json())
-    .then(responde => {
-        console.log(responde)
-        palabra = responde[0].toUpperCase()
-        console.log(palabra)
-    })
-    .catch(err => palabra = lista [Math.floor(Math.random()*lista.length)]);
+BUTON.addEventListener("click",()=>{
+    let peso = INPUT.value;
 
-const BOTON = document.getElementById("guess-button");
-BOTON.addEventListener("click", intentar);
+        if(peso === ""){
+           ERROR.style.display = "block";
+        } else if (peso > 30){
+            let sc = SuperficieCorporal(peso);
+            TITULOSC.innerHTML= "Método de Superficie Corporal, su volumen diario es:";
+            TITULOHS.style.display= "none";
+            TITULOSC.style.display= "block";
 
-function intentar(){
+            RESULTADO1.innerHTML= "1 -  " + sc[0] + " cc";
+            RESULTADO1.style.display= "block";
+
+            RESULTADO2.innerHTML= "2 -  " + sc[1] + " cc";
+            RESULTADO2.style.display= "block";
+
+            RESULTADO3.style.display= "none";
+            ERROR.style.display= "none";
+
+            CONTENIDO2.classList.remove("oculto")
+            CONTENIDO1.classList.add("oculto")
+
+        } else { 
+            let hc = HollidaySegar(peso);
+
+            TITULOHS.innerHTML= "Método Holliday-Segar, los resultados son:";
+            TITULOHS.style.display= "block"; 
+
+            RESULTADO1.innerHTML= " Volumen diario:    " + hc[0] + " cc";
+            RESULTADO1.style.display= "block";
+
+            RESULTADO2.innerHTML= " Mantenimiento:    " + hc[1] + " cc/h";
+            RESULTADO2.style.display= "block";
+
+            RESULTADO3.innerHTML= " Mantenimiento + M/2:    " + hc[2] + " cc/h"
+            RESULTADO3.style.display= "block";
+            ERROR.style.display= "none";
+
+            CONTENIDO1.classList.remove("oculto")
+            CONTENIDO2.classList.add("oculto")
+        }
+});
+
+function SuperficieCorporal(peso){
+    let SuperficieCorporal = ((peso * 4) + 7) / (peso + 90);
+    return [(SuperficieCorporal*1500).toFixed(2), (SuperficieCorporal*2000).toFixed(2)]
+}
+
     
-    const INTENTO = leerIntento();
-
-    if (INTENTO == ""){
-        console.log("vacio")
-        return
-
-    } else if (INTENTO.length !== 5){
-        alert("La palabra debe contener 5 letras")
-        return 
-
-    } else{
-    if (INTENTO == palabra){
-        terminar ("<h1>¡Felicidades, ganaste!</h1>")
-        //return //
-    }
-    const GRID = document.getElementById("grid");
-    const ROW = document.createElement("div");
-    ROW.className = "row";
-    for (let i in palabra){
-        const SPAN = document.createElement("span")
-        SPAN.className = "letter"; 
-        if (palabra[i] == INTENTO[i]){
-            SPAN.innerHTML = INTENTO[i]
-            SPAN.style.backgroundColor = "green"
-        }
-        else if (palabra.includes (INTENTO[i])){
-            SPAN.innerHTML = INTENTO[i]
-            SPAN.style.backgroundColor = "yellow"
-        }
-        else {
-            SPAN.innerHTML = INTENTO[i]
-            SPAN.style.backgroundColor = "grey"
-        }
-        ROW.appendChild(SPAN)
+function HollidaySegar(peso){
+    let resultado = 0;
+    if(peso <= 10){
+        resultado = (peso * 100)
+    } else if(peso >10 && peso <= 20) {
+        resultado = (((peso - 10)*50) + 1000 )
+    } else {
+        resultado = (((peso - 20)*20) + 1500)
     } 
-    GRID.appendChild(ROW)
-    intentos--
-    if (intentos==0){
-        terminar ("<h1>:( Intentalo de Nuevo</h1>")
-    }}
+    return [resultado.toFixed(0), (resultado / 24).toFixed(0), ((resultado / 24) *1.5).toFixed(0)]
 }
-
-function leerIntento(){
-    let intento = document.getElementById("guess-input").value;
-    intento = intento.toUpperCase( )
-    return intento
-
-} 
-
-function terminar(mensaje){
-    let contenedor = document.getElementById("guesses")
-    contenedor.innerHTML = mensaje;
-    BOTON.disabled = true
-
-}
-
-
